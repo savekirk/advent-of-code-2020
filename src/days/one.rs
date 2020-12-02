@@ -13,6 +13,8 @@ use std::io;
 
 // Before you leave, the Elves in accounting just need you to fix your expense report (your puzzle input); apparently, something isn't quite adding up.
 
+/// let input = vec![1721, 979, 366, 299, 675, 1456];
+/// let result = part1()
 pub fn part1(lines: io::Lines<io::BufReader<File>>) -> i32 {
     // Specifically, they need you to find the two entries that sum to 2020 and then multiply those two numbers together.
 
