@@ -1,5 +1,3 @@
-use std::{fs::File, io};
-
 // --- Day 2: Password Philosophy ---
 
 // Your flight departs in a few days from the coastal airport; the easiest way down to the coast from here is via toboggan.
@@ -8,7 +6,7 @@ use std::{fs::File, io};
 
 // Their password database seems to be a little corrupted: some of the passwords wouldn't have been allowed by the Official Toboggan Corporate Policy that was in effect when they were chosen.
 
-pub fn part1(lines: io::Lines<io::BufReader<File>>) -> i32 {
+pub fn part1(lines: Vec<String>) -> i32 {
     // To try to debug the problem, they have created a list (your puzzle input) of passwords (according to the corrupted database) and the corporate policy when that password was set.
 
     // For example, suppose you have the following list:
@@ -25,7 +23,7 @@ pub fn part1(lines: io::Lines<io::BufReader<File>>) -> i32 {
 
     let mut valid_passwords = 0;
     for line in lines {
-        if is_valid_policy1(extract_data(line.unwrap())) {
+        if is_valid_policy1(extract_data(line)) {
             valid_passwords = valid_passwords + 1;
         }
     }
@@ -33,7 +31,7 @@ pub fn part1(lines: io::Lines<io::BufReader<File>>) -> i32 {
     valid_passwords
 }
 
-pub fn part2(lines: io::Lines<io::BufReader<File>>) -> i32 {
+pub fn part2(lines: Vec<String>) -> i32 {
     //   --- Part Two ---
 
     // While it appears you validated the passwords correctly, they don't seem to be what the Official Toboggan Corporate Authentication System is expecting.
@@ -52,7 +50,7 @@ pub fn part2(lines: io::Lines<io::BufReader<File>>) -> i32 {
 
     let mut valid_passwords = 0;
     for line in lines {
-        if is_valid_policy2(extract_data(line.unwrap())) {
+        if is_valid_policy2(extract_data(line)) {
             valid_passwords = valid_passwords + 1;
         }
     }

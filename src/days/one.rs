@@ -1,6 +1,3 @@
-use std::fs::File;
-use std::io;
-
 //   --- Day 1: Report Repair ---
 
 // After saving Christmas five years in a row, you've decided to take a vacation at a nice resort on a tropical island. Surely, Christmas will go on without you.
@@ -15,7 +12,7 @@ use std::io;
 
 /// let input = vec![1721, 979, 366, 299, 675, 1456];
 /// let result = part1()
-pub fn part1(lines: io::Lines<io::BufReader<File>>) -> i32 {
+pub fn part1(lines: Vec<String>) -> i32 {
     // Specifically, they need you to find the two entries that sum to 2020 and then multiply those two numbers together.
 
     // For example, suppose your expense report contained the following:
@@ -37,7 +34,7 @@ pub fn part1(lines: io::Lines<io::BufReader<File>>) -> i32 {
     let mut half_count = 0;
     let mut result = 0;
     for line in lines {
-        let num: i32 = line.unwrap().parse().expect("Not a number");
+        let num: i32 = line.parse().expect("Not a number");
 
         match half % num {
             0 => half_count = half_count + 1,
@@ -61,7 +58,7 @@ pub fn part1(lines: io::Lines<io::BufReader<File>>) -> i32 {
     result
 }
 
-pub fn part2(lines: io::Lines<io::BufReader<File>>) -> i32 {
+pub fn part2(lines: Vec<String>) -> i32 {
     //   --- Part Two ---
 
     // The Elves in accounting are thankful for your help; one of them even offers you a starfish coin they had left over from a past vacation. They offer you a second one if you can find three numbers in your expense report that meet the same criteria.
@@ -74,7 +71,7 @@ pub fn part2(lines: io::Lines<io::BufReader<File>>) -> i32 {
     let mid = 674;
     let mut result = 0;
     for line in lines {
-        let num: i32 = line.unwrap().parse().expect("Not a number");
+        let num: i32 = line.parse().expect("Not a number");
 
         if num >= mid {
             larger.push(num);
@@ -84,12 +81,12 @@ pub fn part2(lines: io::Lines<io::BufReader<File>>) -> i32 {
     }
 
     for ln in &larger {
-      for sn1 in &smaller {
-        if let Some(sn2) = &smaller.iter().find(|n| *n + sn1 + ln  == 2020) {
-            result = *sn2 * sn1 * ln;
-            break;
+        for sn1 in &smaller {
+            if let Some(sn2) = &smaller.iter().find(|n| *n + sn1 + ln == 2020) {
+                result = *sn2 * sn1 * ln;
+                break;
+            }
         }
-      }
     }
 
     result
